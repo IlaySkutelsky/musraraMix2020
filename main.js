@@ -23,34 +23,29 @@ function hideElement(selector) {
 
 let screenWidth = window.innerWidth
 let checkMove = true
+let currAngleIndex = 1
 function handleMouseMove(e) {
   if (checkMove) {
     checkMove = false
     let x = e.x
-    let index = Math.floor(x/(screenWidth/6))+1
-    for (let i = 1; i<7; i++) {
-      let spriteElm = document.querySelector(`.background .sprite${7-i}`)
-      if (i==index) {
-        spriteElm.classList.remove('hidden')
-      } else {
-        spriteElm.classList.add('hidden')
-      }
+    let index = 6-Math.floor(x/(screenWidth/6))
+    if (index !== currAngleIndex) {
+      let oldSpriteElm = document.querySelector(`.background .sprite${currAngleIndex}`)
+      oldSpriteElm.classList.add('opaque')
+      let newSpriteElm = document.querySelector(`.background .sprite${index}`)
+      newSpriteElm.classList.remove('opaque')
+      currAngleIndex = index
     }
+    
     setTimeout(function() {
       checkMove = true
     }, 50)
   }
 }
 
-function handleMouseEnter(e) {
-  let index = e.target.dataset.index;
-  for (let i = 1; i<7; i++) {
-    let spriteElm = document.querySelector(`.background .sprite${7-i}`)
-    if (i==index) {
-      spriteElm.classList.remove('hidden')
-    } else {
-      spriteElm.classList.add('hidden')
-    }
+function preloadImages() {
+  for (let i = 1; i < 7; i++) {
+    new Image().src = `./assets/sprite${i}.jpg`
   }
 }
 
@@ -92,7 +87,7 @@ let htmlTextPoints = {
 
   `,
   1: `היית פה פעם?
-<span onclick="nextTextPoint()">כל שנה</span> יש פה את מוסררה מיקס.
+<span onclick="nextTextPoint()">כל שנה</span> יש פה את מוסררה מיקס. חוץ מהשנה.
 
 
 
@@ -102,7 +97,7 @@ let htmlTextPoints = {
 
 `,  
 2: `היית פה פעם?
-כל שנה יש פה את מוסררה מיקס.
+כל שנה יש פה את מוסררה מיקס. חוץ מהשנה.
 כשישבתי בבית לא הצלחתי <span onclick="nextTextPoint()">להיזכר</span> איפה שערי הכדורגל
 
 
@@ -112,7 +107,7 @@ let htmlTextPoints = {
 
 `,
 3: `היית פה פעם?
-כל שנה יש פה את מוסררה מיקס.
+כל שנה יש פה את מוסררה מיקס. חוץ מהשנה.
 כשישבתי בבית לא הצלחתי להיזכר איפה שערי הכדורגל
 או איפה <span onclick="nextTextPoint()">ממוקמים</span> הסלים
 
@@ -122,7 +117,7 @@ let htmlTextPoints = {
 
 `,
 4: `היית פה פעם?
-כל שנה יש פה את מוסררה מיקס.
+כל שנה יש פה את מוסררה מיקס. חוץ מהשנה.
 כשישבתי בבית לא הצלחתי להיזכר איפה שערי הכדורגל
 או איפה ממוקמים הסלים או איך נראים הבתים ש<span onclick="nextTextPoint()">מעבר לגדר</span>.
 
@@ -132,7 +127,7 @@ let htmlTextPoints = {
 
 `,
 5: `היית פה פעם?
-כל שנה יש פה את מוסררה מיקס.
+כל שנה יש פה את מוסררה מיקס. חוץ מהשנה.
 כשישבתי בבית לא הצלחתי להיזכר איפה שערי הכדורגל
 או איפה ממוקמים הסלים או איך נראים הבתים שמעבר לגדר.
 ניסיתי לחשוב <span onclick="nextTextPoint()">מה</span> יקרה פה
@@ -142,7 +137,7 @@ let htmlTextPoints = {
 
 `,
 6: `היית פה פעם?
-כל שנה יש פה את מוסררה מיקס.
+כל שנה יש פה את מוסררה מיקס. חוץ מהשנה.
 כשישבתי בבית לא הצלחתי להיזכר איפה שערי הכדורגל
 או איפה ממוקמים הסלים או איך נראים הבתים שמעבר לגדר.
 ניסיתי לחשוב מה יקרה פה
@@ -152,7 +147,7 @@ let htmlTextPoints = {
 
 `,
 7: `היית פה פעם?
-כל שנה יש פה את מוסררה מיקס.
+כל שנה יש פה את מוסררה מיקס. חוץ מהשנה.
 כשישבתי בבית לא הצלחתי להיזכר איפה שערי הכדורגל
 או איפה ממוקמים הסלים או איך נראים הבתים שמעבר לגדר.
 ניסיתי לחשוב מה יקרה פה
@@ -162,7 +157,7 @@ let htmlTextPoints = {
 
 `,
 8: `היית פה פעם?
-כל שנה יש פה את מוסררה מיקס.
+כל שנה יש פה את מוסררה מיקס. חוץ מהשנה.
 כשישבתי בבית לא הצלחתי להיזכר איפה שערי הכדורגל
 או איפה ממוקמים הסלים או איך נראים הבתים שמעבר לגדר.
 ניסיתי לחשוב מה יקרה פה
@@ -172,7 +167,7 @@ let htmlTextPoints = {
 
 `,
   9: `היית פה פעם?
-כל שנה יש פה את מוסררה מיקס.
+כל שנה יש פה את מוסררה מיקס. חוץ מהשנה.
 כשישבתי בבית לא הצלחתי להיזכר איפה שערי הכדורגל
 או איפה ממוקמים הסלים או איך נראים הבתים שמעבר לגדר.
 ניסיתי לחשוב מה יקרה פה
@@ -181,7 +176,7 @@ let htmlTextPoints = {
 ונערים משחקים כדורגל
 ו<span onclick="nextTextPoint()">ערב</span>`,
 10: `היית פה פעם?
-כל שנה יש פה את מוסררה מיקס.
+כל שנה יש פה את מוסררה מיקס. חוץ מהשנה.
 כשישבתי בבית לא הצלחתי להיזכר איפה שערי הכדורגל
 או איפה ממוקמים הסלים או איך נראים הבתים שמעבר לגדר.
 ניסיתי לחשוב מה יקרה פה
@@ -190,7 +185,7 @@ let htmlTextPoints = {
 ונערים משחקים כדורגל
 וערב ו<span onclick="nextTextPoint()">שקט</span>`,
 11: `היית פה פעם?
-כל שנה יש פה את מוסררה מיקס.
+כל שנה יש פה את מוסררה מיקס. חוץ מהשנה.
 כשישבתי בבית לא הצלחתי להיזכר איפה שערי הכדורגל
 או איפה ממוקמים הסלים או איך נראים הבתים שמעבר לגדר.
 ניסיתי לחשוב מה יקרה פה
@@ -199,7 +194,7 @@ let htmlTextPoints = {
 ונערים משחקים כדורגל
 וערב ושקט ו<span onclick="nextTextPoint()">זהו</span>`,
 12: `היית פה פעם?
-כל שנה יש פה את מוסררה מיקס.
+כל שנה יש פה את מוסררה מיקס. חוץ מהשנה.
 כשישבתי בבית לא הצלחתי להיזכר איפה שערי הכדורגל
 או איפה ממוקמים הסלים או איך נראים הבתים שמעבר לגדר.
 ניסיתי לחשוב מה יקרה פה

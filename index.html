@@ -8,7 +8,7 @@
   <script defer src="main.js"></script>
   <title>MusraraMix2020</title>
 </head>
-<body onmousemove="handleMouseMove(event)">
+<body onload="preloadImages()" onmousemove="handleMouseMove(event)">
   <section class="header" onclick="showGif()">
     <h1>מוסררה מיקס 2020 </h1>
     <div class="sparkles"></div>
@@ -23,11 +23,11 @@
       <div data-index="6" onmouseenter="handleMouseEnter(event)"></div>
     </div> -->
     <div class="sprite1"></div>
-    <div class="sprite2 hidden"></div>
-    <div class="sprite3 hidden"></div>
-    <div class="sprite4 hidden"></div>
-    <div class="sprite5 hidden"></div>
-    <div class="sprite6 hidden"></div>
+    <div class="sprite2 opaque"></div>
+    <div class="sprite3 opaque"></div>
+    <div class="sprite4 opaque"></div>
+    <div class="sprite5 opaque"></div>
+    <div class="sprite6 opaque"></div>
     <!-- <div class="right-arrow">►</div>
     <div class="left-arrow">◄</div> -->
   </section>
