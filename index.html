@@ -4,16 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Suez+One&display=swap" rel="stylesheet">
-  <script src="main.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre&display=swap" rel="stylesheet"> 
+  <script defer src="main.js"></script>
   <title>MusraraMix2020</title>
 </head>
-<body>
+<body onmousemove="handleMouseMove(event)">
   <section class="header" onclick="showGif()">
     <h1>מוסררה מיקס 2020 </h1>
+    <div class="sparkles"></div>
   </section>
-  <section class="gif hidden">
-    <img src="./assets/movie2.gif" alt="">
+  <section class="background hidden">
+    <!-- <div class="mouse-grid">
+      <div data-index="1" onmouseenter="handleMouseEnter(event)"></div>
+      <div data-index="2" onmouseenter="handleMouseEnter(event)"></div>
+      <div data-index="3" onmouseenter="handleMouseEnter(event)"></div>
+      <div data-index="4" onmouseenter="handleMouseEnter(event)"></div>
+      <div data-index="5" onmouseenter="handleMouseEnter(event)"></div>
+      <div data-index="6" onmouseenter="handleMouseEnter(event)"></div>
+    </div> -->
+    <div class="sprite1"></div>
+    <div class="sprite2 hidden"></div>
+    <div class="sprite3 hidden"></div>
+    <div class="sprite4 hidden"></div>
+    <div class="sprite5 hidden"></div>
+    <div class="sprite6 hidden"></div>
+    <!-- <div class="right-arrow">►</div>
+    <div class="left-arrow">◄</div> -->
+  </section>
+  <section class="text hidden">
+    <p>
+
+    </p>
   </section>
 </body>
 </html>

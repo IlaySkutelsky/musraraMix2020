@@ -5,7 +5,15 @@ body {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  background-color: white;
+  transition: background-color 7s;
 }
+
+.black-body  {
+  background-color: #1a1a1a;
+}
+
+/* ------------- Header ------------- */
 
 .header {
   width: 100%;
@@ -14,28 +22,138 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 4em;
-  font-family: 'Suez One', serif;
+  font-family: 'Miriam Libre', sans-serif;
 }
 
 .header h1{
+  position: absolute;
   cursor: pointer;
-  transition: transform 300ms ease-in-out;
+  transition: text-decoration-line 300ms ease-in-out;
 }
 
 .header h1:hover {
-  transform: scale(1.02);
+  text-dzecoration-line: underline;
 }
 
-.gif {
+.header h1:hover::after{
+  opacity: 1;
+  left: 5px;
+}
+
+.sparkles {
+  opacity: 0;
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  pointer-events: none;
+  background-image: url('./assets/header-sparkles.png');
+}
+
+h1:hover ~ .sparkles {
+  opacity: 1;
+  animation: 1s steps(5) infinite changeFrames;
+}
+
+.blur-away {
+  animation: 1300ms blur forwards;
+}
+
+@keyframes blur {
+  from {filter: blur(0px);
+    opacity: 1;
+  }
+  to   {filter: blur(20px);
+    opacity: 0;
+  }
+}
+
+/* ------------- Background ------------- */
+
+.background {
   display: flex;
 }
 
-.gif img {
-  height: 100%;
-  width: auto;
-  margin: 0.5em auto;
+.background [class^="sprite"] {
+  width: 1280px;
+  height: 720px;
+  margin: 1em auto;
+  background-position-x: 0px;
+  animation: 6s steps(5) infinite changeFrames;
 }
 
+.sprite1 {
+  background-image: url('./assets/sprite1.jpg');
+}
+.sprite2 {
+  background-image: url('./assets/sprite2.jpg');
+}
+.sprite3 {
+  background-image: url('./assets/sprite3.jpg');
+}
+.sprite4 {
+  background-image: url('./assets/sprite4.jpg');
+}
+.sprite5 {
+  background-image: url('./assets/sprite5.jpg');
+}
+.sprite6 {
+  background-image: url('./assets/sprite6.jpg');
+}
+
+.mouse-grid {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: grid;
+  grid-template: "a b c d e f";
+  z-index: 3;
+}
+
+@keyframes changeFrames {
+  from {background-position-x: 0px;}
+  to {background-position-x: 6400px;}
+}
+
+/* ------------- Text ------------- */
+
+section.text {
+  position: absolute;
+  height: 100%;
+  width: 80%;
+  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: #0070e8;;
+  text-shadow: -1px -1px 0 #000, 1px -1px 3px #000, -1px 1px 3px #000, 1px 1px 0 #000;
+  font-family: Tahoma;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.text p {
+  white-space: pre;
+  direction: rtl;
+  line-height: 1.8em;
+  font-size: 2.7em;
+}
+
+.text p span:not(.disabled){
+  display: inline-block;
+  cursor: pointer;
+  text-shadow: -1px -1px 0 #000, -1px 1px 3px #000,
+            #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, 2px 2px 2px rgba(206,89,55,0);
+  transition: color 200ms, transform 200ms;
+}
+
+.text p span:hover:not(.disabled){
+  color: #738dc9;;
+  transform: translateY(-1px);
+}
+
+/* ------------- Helpers ------------- */
+
 .hidden {
-  display: none;
+  display: none !important;
 }
