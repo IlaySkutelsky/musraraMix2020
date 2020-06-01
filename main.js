@@ -1,3 +1,5 @@
+let annoyTimeoutID
+
 function showGif() {
   // return
   let headerElm = document.querySelector("section.header")
@@ -13,6 +15,10 @@ function showGif() {
   }, 1000)
   setTimeout(function() {
     textElm.classList.remove("hidden")
+    annoyTimeoutID = setTimeout(function() {
+      let firstWordElm = document.querySelector("section.text p span")
+      firstWordElm.classList.add("annoying")
+    }, 10000)
   }, 10000)
 }
 
@@ -55,6 +61,8 @@ function insertTextPoint(i) {
 }
 
 function nextTextPoint() {
+ if (annoyTimeoutID) clearTimeout(annoyTimeoutID)
+
   currTextPoint++
   setTimeout(function() {
     insertTextPoint(currTextPoint)
@@ -87,7 +95,7 @@ let htmlTextPoints = {
 
   `,
   1: `היית פה פעם?
-<span onclick="nextTextPoint()">כל שנה</span> יש פה את מוסררה מיקס. חוץ מהשנה.
+כל שנה יש פה את מוסררה מיקס. <span onclick="nextTextPoint()">חוץ</span> מהשנה.
 
 
 
@@ -98,7 +106,7 @@ let htmlTextPoints = {
 `,  
 2: `היית פה פעם?
 כל שנה יש פה את מוסררה מיקס. חוץ מהשנה.
-כשישבתי בבית לא הצלחתי <span onclick="nextTextPoint()">להיזכר</span> איפה שערי הכדורגל
+כשישבתי בבית לא הצלחתי להיזכר <span onclick="nextTextPoint()">איפה</span> שערי הכדורגל
 
 
 
@@ -109,7 +117,7 @@ let htmlTextPoints = {
 3: `היית פה פעם?
 כל שנה יש פה את מוסררה מיקס. חוץ מהשנה.
 כשישבתי בבית לא הצלחתי להיזכר איפה שערי הכדורגל
-או איפה <span onclick="nextTextPoint()">ממוקמים</span> הסלים
+<span onclick="nextTextPoint()">או</span> איפה ממוקמים הסלים
 
 
 
