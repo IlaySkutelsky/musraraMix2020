@@ -54,6 +54,14 @@ h1:hover ~ .sparkles {
   animation: 1s steps(5) infinite changeFrames;
 }
 
+.load-status {
+  position: absolute;
+  bottom: 1em;
+  direction: rtl;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
 .blur-away {
   animation: 1300ms blur forwards;
 }

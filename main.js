@@ -1,7 +1,10 @@
+let imagesLoaded = false
 let annoyTimeoutID
 
 function showGif() {
   // return
+  if (!imagesLoaded) return
+
   let headerElm = document.querySelector("section.header")
   let gifElm = document.querySelector("section.background")
   let bodyElm = document.querySelector("body")
@@ -57,6 +60,10 @@ function preloadImages() {
   Promise.all(imgLoadPromises)
   .then(()=> {
     console.log('all images loaded');
+    imagesLoaded = true
+    let loadStatusElm = document.querySelector(".load-status")
+    loadStatusElm.innerText = 'הטעינה הסתיימה'
+    loadStatusElm.classList.add('opaque')
   })
 }
 
