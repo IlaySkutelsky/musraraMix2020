@@ -50,10 +50,24 @@ function handleMouseMove(e) {
 }
 
 function preloadImages() {
+  let imgLoadPromises = []
   for (let i = 1; i < 7; i++) {
-    new Image().src = `./assets/sprite${i}.jpg`
+    imgLoadPromises.push(loadImage( `./assets/sprite${i}.jpg`))
   }
+  Promise.all(imgLoadPromises)
+  .then(()=> {
+    console.log('all images loaded');
+  })
 }
+
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.addEventListener("load", () => resolve(img));
+    img.addEventListener("error", err => reject(err));
+    img.src = src;
+  });
+};
 
 function insertTextPoint(i) {
   let textPElm = document.querySelector('section.text p')
